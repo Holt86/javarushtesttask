@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    private static final int MAX_COUNT_USERS_PER_PAGE = 5;
+    private static final int MAX_USERS_PER_PAGE = 5;
     @Autowired
     private UserService service;
 
@@ -29,7 +29,7 @@ public class UserController {
     public ModelAndView getPageAllUsers(@RequestParam(required = false) Integer page) {
         List<User> users = new ArrayList<User>(service.allUsers());
         PagedListHolder<User> pagedListHolder = new PagedListHolder<User>(users);
-        pagedListHolder.setPageSize(MAX_COUNT_USERS_PER_PAGE);
+        pagedListHolder.setPageSize(MAX_USERS_PER_PAGE);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("UsersView");
         modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
